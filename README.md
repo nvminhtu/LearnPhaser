@@ -26,6 +26,7 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 * [Phaser Sandbox] - You also don't need install anything, you can code Phaser in a sandbox (using your browser).
 * [Sublime Text] - Light weight editor and easy to code and hightlight your work.
 * [Atom] - Powerful code editor now with thoundsand of plugins.
+* [Phaser Editor] - now only for Windows and Linux
 
 ### Todos
 
@@ -49,3 +50,4 @@ MIT
    [Phaser Sandbox]: <https://phaser.io/sandbox>
    [Sublime Text]: <https://www.sublimetext.com/>
    [Atom]: <https://atom.io/>
+   [Phaser Editor]: <http://phasereditor.boniatillo.com/>
