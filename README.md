@@ -20,7 +20,7 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 # Step by Step Learning
 
 ### Basic
-* Load an Image
+* [Load an Image] - Load image to your screen (avatar or background)
 * Click on an Image
 * Move an Image
 
@@ -58,3 +58,5 @@ MIT
    [Sublime Text]: <https://www.sublimetext.com/>
    [Atom]: <https://atom.io/>
    [Phaser Editor]: <http://phasereditor.boniatillo.com/>
+
+   [Load an Image]: <https://phaser.io/examples/v2/basics/01-load-an-image>
