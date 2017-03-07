@@ -17,6 +17,13 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 * TILEMAPS
 * DEVICE SCALING
 
+# Step by Step Learning
+
+### Basic
+* Load an Image
+* Click on an Image
+* Move an Image
+
 ### Example Game & Source code
 
 * [Example Phaser Game] - Full collection with hundred apps.
