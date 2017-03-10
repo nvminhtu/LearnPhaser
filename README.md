@@ -23,7 +23,7 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 * [Load an Image] - Load image to your screen (avatar or background)
 * Click on an Image
 * Move an Image
-* Basic State
+* [Basic State] - How to use state in PhaserJS
 
 ### Example Game & Source code
 
