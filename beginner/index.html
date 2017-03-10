@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>My First Game</title>
+  <script type="text/javascript" src="js/phaser.min.js"></script>
+  <style>
+  	body{margin:0;}
+  </style>	
+</head>
+<body>
+  <script type="text/javascript">
+  	/*Phaser.Game : Khởi tạo một đối tượng Game
+	Tham số: 
+	1. Width
+	2. Height
+	3. Context : có thể là Phaser.AUTO , Phaser.WEBGL, Phaser.CANVAS
+	4. ID of DOM: ID của DOM bạn muốn chèn màn hình Game mà Phaser tạo vào, nếu để trống, sẽ tự động chèn vào Body
+	5. Object chứa các hàm quan trọng của Phaser preload(), create(), update()*/
+
+	var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update});
+	
+	var platforms;
+	var player;
+	var cursors;
+	var stars;
+	var score = 0;
+	var scoreText;
+	/*Loading Assets (images, sprite)
+		Dùng hàm load.image hoặc load.spritesheet từ Phaser.Game. Việc load các assets cần được viết trong hàm preload()
+		var game = new Phaser.Game();
+		Tham số: 
+		1. Asset key: key của asset
+		2. Url của asset  
+		3 and 4. Kích cỡ của mỗi frame
+		5. Số lượng frame
+
+		Ví dụ: game.load.spritesheet('uniqueKey', 'assets/sprites/unikey37x45.png', 37, 45, 18);
+	*/
+	function preload(){
+		game.load.image('sky', 'assets/sky.png');
+		game.load.image('ground','assets/platform.png');
+		game.load.image('star', 'assets/star.png');
+		game.load.spritesheet('dude','assets/dude.png',32,48);
+	}
+
+	function create(){
+		//  We're going to be using physics, so enable the Arcade Physics system
+
+		/*Kích hoạt hệ thống Physics: dùng hàm game.physics.startSystem();
+		Tham số: 
+		1. Tên Physics (Phaser hỗ trợ 3 hệ thống Physics: Arcade Physics, P2, Ninja Physics)*/
+	    game.physics.startSystem(Phaser.Physics.ARCADE);
+	    
+	    //  A simple background for our game
+	    /*Thêm 1 sprite đến màn hình game: Dùng hàm add.sprite từ Phaser.Game. Việc add các sprite đến màn hình game được viết trong hàm create()
+
+		game.add.sprite()
+		Tham số: 
+		1. Tọa độ X
+		2. Tọa độ Y
+		3. Asset key
+		*/
+	    game.add.sprite(0, 0, 'sky');
+
+	    //  The platforms group contains the ground and the 2 ledges we can jump on
+	    /*Khởi tạo group, group dùng để chứa những element có tính chất tương tự nhau thành 1 group
+	    var platforms = game.add.group(); platforms đã biến thành 1 group*/
+	    platforms = game.add.group();
+
+	    //  We will enable physics for any object that is created in this group
+	    /*Kích hoạt physics cho group platforms
+	    platforms.enableBody = true/false; */
+		platforms.enableBody = true;
+
+	    // Here we create the ground.
+		/* create(x, y, key, frame, exists, index) → {DisplayObject}
+		Tạo một đối tượng Phaser.Sprite mới và thêm nó đến top của group (tự động thêm lên top). 
+		Tham số: 
+		x : Tọa độ X xuất hiện sprite
+		y : Tọa độ Y xuất hiện sprite
+		key: asset key
+		frame: nếu sprite sử dụng là một phần của sprite sheet, thông số này có thể chỉ định chính xác vị trí cần sử dụng
+		exists: The default exists state of the Sprite.
+		index : thứ tự trong group*/
+
+		/*game.world.height : chiều cao của world, là kích cỡ gốc của màn hình (kích cỡ gốc là kích cỡ khi khởi tạo màn hình game)*/
+	    var ground = platforms.create(0, game.world.height - 64, 'ground');
+
+	    // Scale it to fit the width of the game (the original sprite is 400x32 in size)
+	    ground.scale.setTo(2, 2); //Thông số này nghĩa là nhân đôi width lên 2, nhân đôi height lên 2
+
+	    // This stops it from falling away when you jump on it
+	    // Thuộc tính của sprite body.immovable: cố định các thực thể, immovable = không di chuyển
+
+	    ground.body.immovable = true;
+
+	    //  Now let's create two ledges
+	    var ledge = platforms.create(400, 400, 'ground');
+
+	    ledge.body.immovable = true;
+
+	    ledge = platforms.create(-150, 250, 'ground');
+
+	    ledge.body.immovable = true;
+
+	    //Tạo player
+	    player = game.add.sprite(0, game.world.height - 200, 'dude');
+
+	    //Kích hoạt physics cho player
+    	game.physics.arcade.enable(player);
+
+    	// Player physics properties. Give the little guy a slight bounce.
+    	// Set vài thuộc tính physics cho player. 
+    	// Bounce: độ đàn hồi
+	    player.body.bounce.y = 0.2; // độ đàn hồi 
+	    // Gravity: trọng lực
+	    player.body.gravity.y = 300; // trọng lực
+	    // collideWorldBounds: Thuộc tính này nghĩa là: Khi tới vùng biên của world, nếu thuộc tính này set là true thì player không thoát ra khỏi world được. Set false thì player có thể rời khỏi world
+	    player.body.collideWorldBounds = true; 
+
+	    // Our two animations, walking left and right.
+	    // animations.add : Thêm animation đến sprite
+	    // Tham số
+	    // 1. Tên animation
+	    // 2. Mảng các frame của animation
+	    // 3. Số frame để thực hiện 1 hành động (số càng lớn hoạt động càng nhanh)
+	    // 4. true
+    	player.animations.add('left', [0, 1, 2, 3], 5, true);
+    	player.animations.add('right', [5, 6, 7, 8], 5, true);
+
+    	// Thêm khả năng di chuyển bằng keyboad.
+    	// Khởi tạo
+    	cursors = game.input.keyboard.createCursorKeys();
+
+    	//Khởi tạo group stars - nhóm các ngôi sao
+    	stars = game.add.group();
+
+    	//Tạo 12 stars
+    	for(var i =0; i<12; i++)
+    	{
+    		var star = stars.create(70*i, 0, 'star');
+    		game.physics.arcade.enable(star);
+    		//set vài thuộc tính physics cho star
+    		star.body.bounce.y = 0.9;
+    		star.body.gravity.y = 200;
+    		star.body.collideWorldBounds = true;
+    	}
+
+    	//Kích hoạt physics cho group stars 
+    	stars.enableBody = true;
+
+    	// Khởi tạo một text lên màn hình
+    	// Tham số: 
+    	// 1 và 2: tọa độ hiển thị x, y
+    	// 3. Text muốn hiển thị
+    	// 4. Object chứa định dạng text
+    	scoreText = game.add.text(16,16, 'Score: 0', {fontSize: '32px', fill:'#000'});
+
+	}
+
+	function update(){
+		// Collide the player and the stars with the platforms
+		// collide(object1, object2, collideCallback, processCallback, callbackContext) → {boolean} 
+		// Kiểm tra một sự kiện va chạm giữa 2 thực thể.
+		// Bạn có thể kiểm tra Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer hoặc sự va chạm giữa Group vs. Tilemap Layer
+		// Tham số 1 và 2 đều có thể là một mảng những object
+		// Nếu 2 mảng object được truyền vào, các đối tượng của mảng 1 sẽ được check sự va chạm với tất cả các đối tượng của mảng 2
+		// Những object được tự động tách ra. Nếu không muốn tách thì dùng ArcadePhysics.overlap 
+		// processCallback: Nếu được truyền vào, hàm này sẽ được gọi khi 2 sprites va chạm nhau. Được gọi trước khi sự kiện tách diễn ra
+    	game.physics.arcade.collide(player, platforms);
+    	game.physics.arcade.collide(stars, platforms);
+
+		//Kiểm tra player có đè lên star hay không, nếu có thì chạy hàm collectStar(player, star)	
+	    game.physics.arcade.overlap(player, stars, collectStar, null, this);
+
+    	//  Reset the players velocity (movement)
+    	// velocity là hướng tiến/lui/trên/dưới của 1 đối tượng. 
+    	// Nếu velocity.x > 0: tiến lên (sang phải)
+    	// Nếu velocity.x < 0: lùi lại (sang trái) 
+    	// Nếu velocity.y > 0: xuống
+    	// Nếu velocity.y < 0: lên (nhảy lên) 
+	    player.body.velocity.x = 0;
+
+	    if (cursors.left.isDown)
+	    {
+	        // Move to the left
+	        // Di chuyển sang trái (số âm)
+	        player.body.velocity.x = -150;
+
+	        //animations.play: thực thi 1 animation
+	        player.animations.play('left');
+	    }
+	    else if (cursors.right.isDown)
+	    {
+	        //  Move to the right
+	        player.body.velocity.x = 150;
+
+	        player.animations.play('right');
+	    }
+	    else
+	    {
+	        //  Stand still
+	        // Dừng đối tượng lại
+	        player.animations.stop();
+
+	        player.frame = 4;
+	    }
+
+	    //  Allow the player to jump if they are touching the ground.
+	    if (cursors.up.isDown && player.body.touching.down)
+	    {
+	        player.body.velocity.y = -350;
+	    }
+	}
+
+	function collectStar(player, x){
+		//Xóa một đối tượng
+		x.kill();
+
+		score += 10;
+		scoreText.text = 'Score: ' + score;
+	}
+
+  </script>
+</body>
+</html>
