@@ -12,8 +12,17 @@ Coi thêm: [Sử dụng TExture Atlas với Texture Packer]
 * [CocoonJS] - Build sang Android, IOS,... sử dụng online, hơi khó control. Mỗi lần dc 2 dự án build online trên đó.
 * [Cordova] - Build sang Android, IOS,... Cài đặt và nắm cấu hình để build.
 
-### Các khái niệm cơ bản để bắt đầu:
-* 
+# Khởi tạo Project
+* Cần phải chạy giao thức http (ví 1 số lý do bảo mật của trình duyệt).
+* Cần chạy server, có nhiều cách:
+
+Sử dụng Apache (Xampp, Wampp),
+
+chạy NodeJS server: live-server, http-server.
+
+Sử dụng Grunt hoặc Gulp.
+
+HTTP Server sử dụng Python.
 
 **Free Software, Hell Yeah!**
 
