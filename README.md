@@ -18,8 +18,9 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 * DEVICE SCALING
 
 # 20 DAYS CAMPAIGN - CHIẾN DỊCH 20 NGÀY
-* Bắt đầu chiến dịch 20 ngày vừa vọc và hoàn thành 1 số game cơ bản.
-[Day 1] - Tổng quan, cài đặt, Một số tính năng cơ bản. 
+Bắt đầu chiến dịch 20 ngày vừa vọc và hoàn thành 1 số game cơ bản.
+
+* [Day 1] - Tổng quan, cài đặt, Một số tính năng cơ bản. 
 
 # Step by Step Learning
 
