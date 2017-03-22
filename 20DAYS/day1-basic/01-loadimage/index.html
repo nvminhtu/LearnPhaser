@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+      var game = new Phaser.Game(800,600,Phaser.AUTO, '', { preload: preload, create: create });
+      function preload() {
+        game.load.image('logo','phaser.png');
+      }
+      function create() {
+        game.add.sprite(50,150,'logo'); // (x,y,key,frame, group) - x và y: vị trí của sprite, key (string) - là image hay texture mà sprite này chúng ta sử dụng.
+      }
+    </script>
+
+    </body>
+</html>

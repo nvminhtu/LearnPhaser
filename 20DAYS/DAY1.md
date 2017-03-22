@@ -24,6 +24,16 @@ Sử dụng Grunt hoặc Gulp.
 
 HTTP Server sử dụng Python.
 
+# Một số kiến thức và câu hỏi:
+* Game - Manages booting, creating subsystems and running the logic and render loop.
+* World -The Game World in which all Game Objects live.
+* Camera - The Camera is your view into the Game World.
+* Stage	- is the root display object.
+--------------
+* Tìm hiểu thêm trong API về các định nghĩa khác, ở đây sẽ đặt câu hỏi:
+* World trong Phaser là gì?
+* hàm anchor.SetTo(0.5,0.5) có tác dụng gì?
+
 **Free Software, Hell Yeah!**
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks)

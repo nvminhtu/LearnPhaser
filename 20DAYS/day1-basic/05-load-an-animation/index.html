@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+
+   <div id="container"></div>
+    <script type="text/javascript">
+      //khai báo game
+      // Tool để tạo Atlas: https://www.codeandweb.com/texturepacker
+      // Multiple Texture Atlas
+
+      var game = new Phaser.Game(800,600,Phaser.AUTO, 'container', { preload: preload, create: create });
+
+      function preload() {
+        //load resource vào game
+        game.load.atlasJSONHash('bot','running_bot.png','running_bot.json');
+      }
+
+      function create() {
+        //add texture atlas phía trên vào trong game
+        var bot = game.add.sprite(200,200,'bot');
+
+
+        //thêm animations vào - đặt tên tạm là run
+        bot.animations.add('run');
+
+        // sau đó mỗi lần cần sử dụng animation đó ta sử dụng key của nó ( ở đây là run)
+        bot.animations.play('run',18,true);         
+        // 15 có nghĩa là 15 khung hình trên 1 giây - frame rate (fps)
+        // số càng nhiều thì tức là hình chuyển động càng nhanh.
+        // true ở đây là lặp lại
+      }
+
+
+
+    </script>
+
+    </body>
+</html>

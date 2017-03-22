@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+   <div id="tss"></div>
+   <div id="container"></div>
+    <script type="text/javascript">
+      //khai báo game
+      var game = new Phaser.Game(800,600,Phaser.AUTO, 'container', { preload: preload, create: create });
+      // khai báo các biến
+      var text,
+          counter = 0;
+
+      function preload() {
+        game.load.image('logo','phaser.png');
+      }
+
+      function create() {
+        // gán hình logo vào 1 sprite - sau đó cho trả về 1 biến
+        var image = game.add.sprite(game.world.centerX, game.world.centerY,'logo');
+        // canh giữa vị trí anchor của tấm hình.
+        image.anchor.set(0.5);
+
+        // chúng ta cần bật chức năng để chạy các actions cho nó (ví dụ như click,...)
+        image.inputEnabled = true;
+
+        text = game.add.text(0,16,'', {fill: '#ffffff' });
+        // hàm text(x,y,'noi dung text', object để định dạng)
+
+
+        image.events.onInputDown.add(listener, this);
+
+      }
+
+      function listener(){
+        counter++;
+        text.text = "Click " + counter + " lần!";
+      }
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+        //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
+        //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
+        //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
+        var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+        function preload () {
+          game.load.image('logo', 'phaser.png');
+        }
+
+        // #world được xem như là 1 nơi ảo - chứa tất cả các object của game.
+        // #world không được giới hạn bởi stage - có thể có bất kỳ size nào.
+        function create () {
+            var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+            logo.anchor.setTo(0.5, 0.5);
+        }
+        //game.world.centerX là canh ở trung tâm theo chiều ngang của world (ví dụ Game ta bao ngoài là 800 width -> canh trái/phải = (800/2) - width của object)
+        //game.world.centerY là canh ở trung tâm theo chiều dọc của world (ví dụ Game ta bao ngoài là 800 width -> canh trên/dưới = (600/2) - width của object)
+
+    };
+
+    </script>
+
+    </body>
+</html>

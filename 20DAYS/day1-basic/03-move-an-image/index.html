@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+   <div id="tss"></div>
+   <div id="container"></div>
+    <script type="text/javascript">
+      //khai báo game
+      var game = new Phaser.Game(800,600,Phaser.AUTO, 'container', { preload: preload, create: create });
+      // khai báo các biến
+      var text,
+          counter = 0;
+
+      function preload() {
+        game.load.image('logo','phaser.png');
+      }
+
+      function create() {
+        var image = game.add.sprite(0,0,'logo');
+
+        // gọi tới 1 physic (chuyển động vật lý) - Phaser support 1 thể loại đó là ARCADE - ta có thể tùy nghi sử dụng.
+        game.physics.enable(image, Phaser.Physics.ARCADE);
+
+        // vận tốc sprite ta thiết lập - ở đây đang là biến image
+        //đơn vị có thể hiểu là pixel/second (tức là lướt qua bao nhiu pixel trên 1 giây)
+        image.body.velocity.x = 20;  // ví dụ ta có screen game = 800px => 800/20 = 40 giây thì hình sẽ chạy qua hết, có thể tùy chỉnh tương ứng nhé.
+
+      }
+
+      function listener(){
+        counter++;
+        text.text = "Click " + counter + " lần!";
+      }
+    </script>
+
+    </body>
+</html>

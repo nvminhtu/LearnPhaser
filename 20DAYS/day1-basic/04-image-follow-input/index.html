@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+
+   <div id="container"></div>
+    <script type="text/javascript">
+      //khai báo game
+      var game = new Phaser.Game(800,600,Phaser.AUTO, 'container', { preload: preload, create: create , update: update, render: render });
+
+      function preload() {
+        game.load.image('logo','phaser.png');
+      }
+
+      var sprite;
+      function create() {
+        // Để làm cho Sprite có thể di chuyển được - chúng ta cần bật ARCADE Physics
+        game.physics.startSystem(Phaser.Physics.ARCADE); // cái này dùng để bật Physics sẵn cho Game - khi mà chúng ta chưa biết đối tượng nào cần gán.
+
+        //thêm sprite và gán image vào cho nó - rồi canh giữa
+        sprite = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+        sprite.anchor.set(0.5);
+
+        // gán physics cho đối tượng sprite vừa tạo bên trên.
+        game.physics.arcade.enable(sprite);
+      }
+
+      function update() {
+        // chúng ta mong muốn khi rê chuột ra chỗ khác - sprite sẽ di chuyển theo chuột
+        // kiểm tra nếu sprite nó lớn hơn 8px so với con trỏ chuột - chúng ta cho nó di chuyển
+        if(game.physics.arcade.distanceToPointer(sprite,game.input.activePointer)> 8) {
+          game.physics.arcade.moveToPointer(sprite, 300); // (đối tượng, tốc độ) - tốc độ ở đây vẫn được tính bằng pixel/giây - mặc định là 60
+        } else {
+          // Nếu nhỏ hơn thì ta cần bỏ vận tốc của sprite đó đi vì đã chạm gần tới rồi.
+          sprite.body.velocity.set(0);
+        }
+      }
+
+      function render() {
+        //hàm này giúp hiễn thị kết quả debug chúng ta mong muốn ra màn hình
+        //Về chi tiết debug sẽ cập nhật thêm sau để nắm về việc cấu hình debug là như thế nào.
+        game.debug.inputInfo(32,32); //(x,y)
+      }
+
+    </script>
+
+    </body>
+</html>
