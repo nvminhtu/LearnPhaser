@@ -22,7 +22,7 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 * Bắt đầu chiến dịch 20 ngày vừa vọc và hoàn thành 1 số game cơ bản.
 * Ngày bắt đầu: 23/03/2017
 
-* [Day 1] - Tổng quan, cài đặt, Một số tính năng cơ bản. 
+* [Day 1] - Tổng quan, cài đặt, Một số tính năng cơ bản.
 
 # Step by Step Learning
 
@@ -64,4 +64,4 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 
    [Load an Image]: <https://phaser.io/examples/v2/basics/01-load-an-image>
    [Basic State]: <http://perplexingtech.weebly.com/game-dev-blog/using-states-in-phaserjs-javascript-game-developement>
-   [Day 1]: <https://github.com/nvminhtu/LearnPhaser/blob/master/DAY1.md>	
+   [Day 1]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY1.md>	

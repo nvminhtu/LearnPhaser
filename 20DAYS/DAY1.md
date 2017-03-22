@@ -1,9 +1,9 @@
-# DAY 1: Tổng quan, cài đặt, Một số tính năng cơ bản. 
+# DAY 1: Tổng quan, cài đặt, Một số tính năng cơ bản.
 
 Đầu tiên thì xem qua phần công cụ để biết đường đi nước bước từ đầu đến cuối:
 
 ### Các công cụ cần thiết để thực hiện các dự án trong 20 ngày:
-* [Physics Editor] - Not FREE - Cái này giống như để tạo 1 physics cho hình ảnh của chúng ta. Chúng ta import hình ảnh vào thêm (filter,...) rồi export ra JSON (tuy nhiên cái này không hỗ trợ định dạng đó) tương ứng dùng trong code Javascript của chúng ta. 
+* [Physics Editor] - Not FREE - Cái này giống như để tạo 1 physics cho hình ảnh của chúng ta. Chúng ta import hình ảnh vào thêm (filter,...) rồi export ra JSON (tuy nhiên cái này không hỗ trợ định dạng đó) tương ứng dùng trong code Javascript của chúng ta.
 Do đó phải tham khảo cái này [Export Physic Editor to JSON],
 * [Texture Packer] - Hỗ trợ chúng ta gom multi sprite vào, compress file,....nói chung là khá nhiều. Và hỗ trợ cả Phaser.
 Coi thêm: [Sử dụng TExture Atlas với Texture Packer]
@@ -11,6 +11,9 @@ Coi thêm: [Sử dụng TExture Atlas với Texture Packer]
 * [Shoe Box] - Cũng hỗ trợ tạo Texture Alias nhưng chưa check thử - vì không thấy chỗ support Phaser (chỉ support HTML5 và 1 số Engine khác).
 * [CocoonJS] - Build sang Android, IOS,... sử dụng online, hơi khó control. Mỗi lần dc 2 dự án build online trên đó.
 * [Cordova] - Build sang Android, IOS,... Cài đặt và nắm cấu hình để build.
+
+### Các khái niệm cơ bản để bắt đầu:
+* 
 
 **Free Software, Hell Yeah!**
 
