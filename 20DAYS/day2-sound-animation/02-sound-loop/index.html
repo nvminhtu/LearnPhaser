@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+    var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+
+      function preload() {
+        game.load.image('speakers', 'speakers.png');
+        game.load.audio('boden', 'bensound-buddy.mp3');
+        // sounds
+        game.load.audio('bass', 'sounds/bass.mp3');
+        game.load.audio('drums', 'sounds/drums.mp3');
+        game.load.audio('percussion', 'sounds/percussion.mp3');
+        game.load.audio('synth1', 'sounds/synth1.mp3');
+        game.load.audio('synth2', 'sounds/synth2.mp3');
+        game.load.audio('top1', 'sounds/top1.mp3');
+        game.load.audio('top2', 'sounds/top2.mp3');
+      }
+
+      var bass;
+      var drums;
+      var percussion;
+      var synth1;
+      var synth2;
+      var top1;
+      var top2;
+
+      var text;
+      var sounds;
+      var current;
+      var speakers;
+      var loopCount = 0;
+      var isPlayingMusic = false;
+
+      function create() {
+
+        game.stage.backgroundColor = '#838282';
+
+        // khai báo image để hiển thị
+        speakers = game.add.image(game.world.centerX, 500, 'speakers');
+        speakers.anchor.set(0.5,1);
+
+        // khai báo text hiển thị trên sound
+        var style = { font: "65px Arial", fill: '#52bace', align: "center" };
+        text = game.add.text(game.world.centerX, 100, "decoding", style);
+        text.anchor.set(0.5);
+
+        // call sounds into game
+        bass = game.add.audio('bass');
+        drums = game.add.audio('drums');
+
+        // #action: enable sound click
+        speakers.inputEnabled = true;
+        speakers.events.onInputDown.add(playSound, this);
+      }
+
+      // chạy âm thanh
+      function playSound() {
+
+        // add music
+        music = game.add.audio('boden');
+
+        if(isPlayingMusic == true) {
+          //music.onDecoded.add(pause, this);
+          muisc.pause();
+        } else {
+          music.onDecoded.add(start, this);
+          isPlayingMusic = true;
+          //music.onDecoded.add(start, this);
+        }
+        console.log(isPlayingMusic);
+
+      }
+
+      // hàm load nhạc
+      function start() {
+        //cho nhạc chạy vào nghe từ nhỏ đến lớn - thời gian tăng dần khoảng 4s
+        music.fadeIn(4000);
+      }
+
+      // hàm pause nhạc
+      function pause() {
+        music.pause();
+      }
+
+
+    </script>
+
+    </body>
+</html>
