@@ -12,6 +12,10 @@ Boilerplate là 1 bộ source code null, bao gồm kết hợp 1 hoặc nhiều 
 
 * [Phaser ES6 Boilerplate] - Many features: Gulp, Browserify, Babelify, Browsersync, UglifyJS, Sourcemaps
 * [Phaser ES6 Webpack] - Phaser + ES6 + Webpack
+* [Phaser ES6 Demo Text] - Testing up
+
+### Tutorial
+
 
 **Free Software, Hell Yeah!**
 
@@ -22,3 +26,4 @@ Boilerplate là 1 bộ source code null, bao gồm kết hợp 1 hoặc nhiều 
 [Small Shoot Game]: <https://phaser.io/news/2016/01/es6-demo>
 [Level Up Phaser ES6]: <https://www.joshmorony.com/level-up-your-phaser-games-with-es6/>
 [Phaser ES6 Demo]: <https://github.com/cstuncsik/phaser-es6-demo>
+[Phaser ES6 Demo Text]: <http://codepen.io/belohlavek/pen/aORJVL>
