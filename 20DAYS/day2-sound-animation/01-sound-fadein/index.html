@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+    var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, render: render });
+
+      function preload() {
+        game.load.image('disk', 'phaser.png');
+        game.load.audio('boden', 'bensound-buddy.mp3');
+      }
+
+      var music;
+
+      function create() {
+
+        game.stage.backgroundColor = '#182d3b';
+        game.input.touch.preventDefault = false;
+
+        music = game.add.audio('boden');
+        music.onDecoded.add(start, this);
+
+        // khởi tạo đối tượng cần di chuyển
+        s = game.add.sprite( 0, game.world.centerY, 'disk');
+        s.anchor.setTo(0.5, 0.5);
+
+        // tạo chuyển động cho sprite tương ứng
+        game.physics.enable(s, Phaser.Physics.ARCADE);
+        s.body.velocity.x = 50; // tăng vận tốc cho sprite tương ứng
+      }
+
+      // hàm load nhạcs
+      function start() {
+        //cho nhạc chạy vào nghe từ nhỏ đến lớn - thời gian tăng dần khoảng 4s
+        //music.fadeIn(4000); //đơn vị giây
+        music.fadeIn(1000);
+      }
+
+      //add animation for an image.
+      function render() {
+        game.debug.soundInfo(music, 20, 32);
+      }
+
+    </script>
+
+    </body>
+</html>
