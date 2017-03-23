@@ -22,7 +22,9 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 * Bắt đầu chiến dịch 20 ngày vừa vọc và hoàn thành 1 số game cơ bản.
 * Ngày bắt đầu: 23/03/2017
 
-* [Day 1] - Tổng quan, cài đặt, Một số tính năng cơ bản.
+* [Day 1] - Tổng quan, cài đặt, Một số tính năng cơ bản (Game, Load, Create, Update - World, Physics, Animation, Sprite, Image)
+
+* [Day 2] - Cơ bản về Tween, Render, Text + Animation.
 
 # Step by Step Learning
 
@@ -64,4 +66,12 @@ Phaser: The fun, fast and free HTML5 Game Framework. ... Phaser source code get 
 
    [Load an Image]: <https://phaser.io/examples/v2/basics/01-load-an-image>
    [Basic State]: <http://perplexingtech.weebly.com/game-dev-blog/using-states-in-phaserjs-javascript-game-developement>
-   [Day 1]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY1.md>	
+   [Day 1]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY1.md>
+   [Day 2]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY2.md>
+   [Day 3]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY3.md>
+   [Day 4]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY4.md>
+   [Day 5]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY5.md>
+   [Day 6]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY6.md>
+   [Day 7]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY7.md>
+   [Day 8]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY8.md>
+   [Day 9]: <https://github.com/nvminhtu/LearnPhaser/blob/master/20DAYS/DAY9.md>
