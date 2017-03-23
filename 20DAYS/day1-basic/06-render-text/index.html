@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+
+   <div id="container"></div>
+    <script type="text/javascript">
+      // Ví dụ tạo text và render ra màn hình
+
+      var game = new Phaser.Game(800,600,Phaser.AUTO, 'container', { preload: preload, create: create });
+      
+      function preload() {
+
+      }
+      function create() {
+        var text = '-  Hãy nhấn nút, \n \n để nhảy lên.';
+        var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
+
+        var t = game.add.text(game.world.centerX - 300, 0, text, style);
+      }
+
+    </script>
+
+    </body>
+</html>

@@ -33,6 +33,10 @@ HTTP Server sử dụng Python.
 * Tìm hiểu thêm trong API về các định nghĩa khác, ở đây sẽ đặt câu hỏi:
 * World trong Phaser là gì?
 * hàm anchor.SetTo(0.5,0.5) có tác dụng gì?
+--------------
+# Bài thực hành
+* Load 1 hình và cho phép click được trên hình đó.
+
 
 **Free Software, Hell Yeah!**
 

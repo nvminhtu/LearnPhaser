@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+    </head>
+    <body>
+
+   <div id="container"></div>
+    <script type="text/javascript">
+      // Tween: hiểu tạm là biến hình
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'container', { preload: preload, create: create, update: update, render: render });
+      var tween;
+      var prev = -400;
+      var t = Date.now(); // lấy thời gian hiện hành;
+      var sprite;
+
+      function preload() {
+        // kiểu như cho vào để game loop và cho performation tốt hơn (update later)
+        game.forceSingleUpdate = true;
+        game.load.image('logo','phaser.png');
+
+      }
+      function create() {
+        // tạo 1 sprite
+        sprite = game.add.sprite(-400,0,'logo');
+        // tạo tween cho sprite 
+        tween = game.add.tween(sprite);
+        tween.to({ x: 800 }, 5000, 'Linear', true, 0); // 5000: số thời gian chạy của tween
+
+      }
+      function update() {
+          if (sprite.x < 800)
+          {
+              // sprite.x += 4;
+          }
+      }
+      function render() {
+        // return;
+        if (sprite.x < 800) {
+            var ms = Date.now() - t;
+            var d = window.dx - prev;
+
+            if (ms > 20)
+            {
+                console.log('------------>', ms, d);
+            }
+            else
+            {
+                console.log(ms, d);
+            }
+
+            prev = window.dx;
+
+            t = Date.now();
+        }
+        //game.debug.text(this.game.time.elapsedMS, 32, 32);
+        //game.debug.text(window.dx, 32, 32);
+    }
+    </script>
+
+    </body>
+</html>
