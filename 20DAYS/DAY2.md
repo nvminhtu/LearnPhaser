@@ -4,6 +4,9 @@
 * Tween an image (tạo hình biến/chuyển động).
 * Render Text (Hiển thị text ra màn hình)
 
+### Sound manager & Audio
+* 
+
 ### Các hàm liên quan.
 ```sh
 tween.to({ x: 800 }, 5000, 'Linear', true, 0);

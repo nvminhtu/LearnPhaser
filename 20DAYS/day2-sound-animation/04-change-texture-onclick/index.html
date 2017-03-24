@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+    var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+
+    // khai báo hàm preload
+    function preload() {
+      // ở đây ta có 2 dạng: 1 dạng atlas và 1 dạng là spritesheet
+      game.load.atlasJSONHash('bot', 'sprites/running_bot.png', 'sprites/running_bot.json');
+      game.load.spritesheet('mummy', 'sprites/metalslug_mummy37x45.png', 37, 45, 18);
+      //(key, url, frameWidth, frameHeight, frameMax, margin, spacing)
+      //frameWidth và frameHeight ở đây là 37 và 45 - có nghĩa là nó sẽ lấy kích thước của 1 sprite trong sprite sheet
+      // 18 là khoảng cách giữa các sprite - có thể kéo vào photoshop để đo kích thước nhé.
+
+    }
+
+    // khai báo sprite ta khởi tạo ( ví dụ là 1 nhân vật chính của game)
+    var bot;
+    // khai báo hàm create
+    function create() {
+      bot = game.add.sprite(100,200,'bot');
+      bot.animations.add('run');
+      bot.animations.play('run',15,true);
+      //(name, frameRate, loop, killOnComplete)
+      // tên của animation mình đặt, thời gian chuyển đổi giữa các frame (mỗi frame chứa 1 sprite - khai báo trong file json), có lặp lại hay không.
+      // Phần này nằm trong lớp Phaser Animations
+
+      game.input.onDown.addOnce(changeMummy, this);
+      //chỉ click và kích hoạt 1 lần - lần click sau ko có tác dụng.
+    }
+
+    function changeMummy() {
+      bot.loadTexture('mummy', 0);
+      bot.animations.add('walk');
+      bot.animations.play('walk', 30, true);
+    }
+    </script>
+
+    </body>
+</html>
