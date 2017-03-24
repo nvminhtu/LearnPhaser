@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+    // Game 2 - nâng cấp: Hiển thị phong cảnh 1 bãi biển có nhiều sinh vật đang bơi hoặc chuyển động ở bên trong
+    // #Tạo 1 scence có âm thanh và chuyển động của 1 nhóm sprite
+
+    // Cần gì?
+    // + 1 hình background biển
+    // + 1 hình trang trí cho đáy biển
+    // + 1 tập spritesheet chuyển động của sinh vật (ở đây bây giờ là nhiều loại sinh vật)
+    // + 1 file âm thanh chuyển động trong nước
+
+    // Khởi tạo game
+    var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+    var music;
+    // khai báo hàm preload
+    // cho load file atlas vào trong game - lần này là file xml
+    function preload() {
+      //game.load.atlas('sinhvatbien', 'sprites/seacreatures_json.png', 'sprites/seacreatures_json.json');
+      game.load.atlasXML('seacreatures', 'sprites/seacreatures.png', 'sprites/seacreatures.xml');
+      // file atlas dạng XML thường được tạo từ Adobe Flash
+
+      // decor và cho hình đáy biển vào
+      game.load.image('hinhnenbien','pic/undersea.jpg');
+      game.load.image('daybien','pic/seabed.png');
+
+      // thêm âm thanh
+      game.load.audio('amthanhbien', 'bensound-littleidea.mp3');
+    }
+
+    // bây giờ chúng ta cần khai báo các đối tượng sinh vật liên quan
+    var jellyfish;
+    var crab;
+    var greenJellyfish;
+    var octopus;
+    var purpleFish;
+    var seahorse;
+    var squid;
+    var stingray;
+    var flyingfish;
+
+
+    // thêm các đối tượng vào trong game
+    function create() {
+      game.add.sprite(0, 0, 'hinhnenbien');
+
+      // thêm jelly fish
+      jellyfish = game.add.sprite(670, 20, 'seacreatures');
+      jellyfish.animations.add('swim', Phaser.Animation.generateFrameNames('blueJellyfish', 0, 32, '', 4), 30, true);
+      // tạo ra các frame tương ứng với name của frame trong file XML
+      // ví dụ tên là blueJellyfish0000 tới blueJellyfish0032, khoảng cách là 30
+      jellyfish.animations.play('swim');
+
+      // tiếp tục thêm các sinh vật khác
+      crab = game.add.sprite(550, 480, 'seacreatures');
+       crab.animations.add('swim', Phaser.Animation.generateFrameNames('crab1', 0, 25, '', 4), 30, true);
+       crab.animations.play('swim');
+
+       greenJellyfish = game.add.sprite(330, 100, 'seacreatures');
+       greenJellyfish.animations.add('swim', Phaser.Animation.generateFrameNames('greenJellyfish', 0, 39, '', 4), 30, true);
+       greenJellyfish.animations.play('swim');
+
+       octopus = game.add.sprite(160, 400, 'seacreatures');
+       octopus.animations.add('swim', Phaser.Animation.generateFrameNames('octopus', 0, 24, '', 4), 30, true);
+       octopus.animations.play('swim');
+
+       purpleFish = game.add.sprite(800, 413, 'seacreatures');
+       purpleFish.animations.add('swim', Phaser.Animation.generateFrameNames('purpleFish', 0, 20, '', 4), 30, true);
+       purpleFish.animations.play('swim');
+
+       seahorse = game.add.sprite(491, 40, 'seacreatures');
+       seahorse.animations.add('swim', Phaser.Animation.generateFrameNames('seahorse', 0, 5, '', 4), 30, true);
+       seahorse.animations.play('swim');
+
+       // thêm tĩnh ko có animation
+       squid = game.add.sprite(610, 215, 'seacreatures', 'squid0000');
+
+       stingray = game.add.sprite(80, 190, 'seacreatures');
+       stingray.animations.add('swim', Phaser.Animation.generateFrameNames('stingray', 0, 23, '', 4), 30, true);
+       stingray.animations.play('swim');
+
+       // thêm tĩnh
+       flyingfish = game.add.sprite(60, 40, 'seacreatures', 'flyingFish0000');
+
+       // thêm hình đáy biển vào
+      game.add.sprite(0,466,'daybien');
+
+       music = game.add.audio('amthanhbien');
+       music.onDecoded.add(start, this);
+
+
+
+      // sau khi thêm biến động hình cho từng sinh vật rồi ta thêm chuyển động cho từng thằng.
+      // to: function ( properties, duration, ease, autoStart, delay, repeat, yoyo )
+      // yoyo: nghĩa là cho phép nó chạy ngược trở lại (canh theo khung màn game)
+      game.add.tween(purpleFish).to({ x: -200 }, 11000, Phaser.Easing.Quadratic.InOut, true, 0, 1000, false);
+      game.add.tween(seahorse).to({ y: 400 }, 9000, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true );
+      game.add.tween(octopus).to({ y: 530 }, 2000, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
+      game.add.tween(greenJellyfish).to({ y: 250 }, 4000, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
+      game.add.tween(jellyfish).to({ y: 100 }, 8000, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
+
+    }
+    // hàm khởi tạo file âm thanh
+    function start() {
+      music.fadeIn(2000); // chờ 2 s (bật từ nhỏ tới lớn);
+    }
+    // render - dùng để chạy khi debug
+    function render () {
+
+    }
+    </script>
+
+    </body>
+</html>
