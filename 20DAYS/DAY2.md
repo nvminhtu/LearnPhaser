@@ -1,11 +1,14 @@
-# DAY 2: Cơ bản (phần 2) 
+# DAY 2: Cơ bản (phần 2)
 
 ### Ví dụ học
 * Tween an image (tạo hình biến/chuyển động).
 * Render Text (Hiển thị text ra màn hình)
+* Group - Chọn nhóm các sprite hoặc spritesheet.
+* Spritesheet - tạo multi sprite
+* Atlas - Multi Spritesheet
 
 ### Sound manager & Audio
-* 
+*
 
 ### Các hàm liên quan.
 ```sh

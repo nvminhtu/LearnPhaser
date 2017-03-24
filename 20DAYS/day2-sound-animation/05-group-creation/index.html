@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+    // Game 2: Hiển thị phong cảnh 1 bãi biển có nhiều sinh vật đang bơi hoặc chuyển động ở bên trong
+    // #Tạo 1 scence có âm thanh và chuyển động của 1 nhóm sprite
+
+    // Cần gì?
+    // + 1 hình background biển
+    // + 1 hình trang trí cho đáy biển
+    // + 1 tập spritesheet chuyển động của sinh vật (ở đây là con bạch tuộc)
+    // + 1 file âm thanh chuyển động trong nước
+
+    // Khởi tạo game
+    var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+
+    // khai báo hàm preload
+    function preload() {
+      // cho load file atlas vào trong game
+      game.load.atlas('sinhvatbien', 'sprites/seacreatures_json.png', 'sprites/seacreatures_json.json');
+      // decor và cho hình đáy biển vào
+      game.load.image('hinhnenbien','pic/undersea.jpg');
+      game.load.image('daybien','pic/seabed.png');
+    }
+
+    // cho chạy các đối tượng
+    function create() {
+      game.add.sprite(0, 0, 'hinhnenbien');
+
+      // chúng ta tạo 1 group các sprite
+      var group = game.add.group();
+
+      // ví dụ ở đây chúng ta tạo 6 con
+      for (var i = 0; i < 6; i++) {
+           //  They are evenly spaced out on the X coordinate, with a random Y coordinate
+           sprite = group.create(120 * i, game.rnd.integerInRange(100, 400), 'sinhvatbien', 'octopus0000');
+           // x: chúng ta canh tỉ lệ x bằng cách nhân với 120 - tức là mỗi sprite cách nhau 120
+           // y: chúng ta random cho khoảng cách y so với màn hình trong khoảng 100 - 400
+           // chọn atlas tương ứng
+           // chọn json element muốn chạy khởi tạo.
+       }
+
+      game.add.sprite(0, 466, 'daybien');
+    }
+
+    // render - dùng để chạy khi debug
+    function render () {
+
+    }
+    </script>
+
+    </body>
+</html>
