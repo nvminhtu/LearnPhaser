@@ -19,7 +19,7 @@
 
     // Khởi tạo game
     var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create });
-
+    var music;
     // khai báo hàm preload
     function preload() {
       // cho load file atlas vào trong game
@@ -27,6 +27,10 @@
       // decor và cho hình đáy biển vào
       game.load.image('hinhnenbien','pic/undersea.jpg');
       game.load.image('daybien','pic/seabed.png');
+
+      // thêm âm thanh
+      game.load.audio('amthanhbien', 'bensound-littleidea.mp3');
+
     }
 
     // cho chạy các đối tượng
@@ -44,11 +48,40 @@
            // y: chúng ta random cho khoảng cách y so với màn hình trong khoảng 100 - 400
            // chọn atlas tương ứng
            // chọn json element muốn chạy khởi tạo.
-       }
 
-      game.add.sprite(0, 466, 'daybien');
+      }
+
+       var frameNames = Phaser.Animation.generateFrameNames('octopus', 0, 24, '', 4);
+        // (prefix, start, stop, suffix, zeroPad)
+        // tên của prefix element (ở trong file json là octopus)
+        // start: bắt đầu từ octopus0
+        // stop: 24
+        // suffix: không có
+        // zeropad: lấy theo 4 con số
+        // dùng hàm này để tạo array cho animation
+
+        //
+        //  Hàm callAll cho phép group thiết lập hàm cho từng item trong group đó
+        //  Ở đây là hàm animations.add ('swim',frameNames,30,true,false)
+        //  In this case we're saying: child.animations.add('swim', frameNames, 30, true, false)
+        //  Gọi định dạng là animations
+        //  Context của từng child
+        //  Các phần phía sau là các phần khai báo của hàm animations.add
+        group.callAll('animations.add', 'animations', 'swim', frameNames, 30, true, false);
+
+        // tới đây phải gọi cái animations chúng ta vừa gán cho từng item con trong group và chúng ta cần play animation, dùng hàm call All gọi tới.
+        group.callAll('play', null, 'swim');
+
+        // trang trí thêm phần đáy biển
+        game.add.sprite(0, 466, 'daybien');
+        // thêm audio cho sinh động
+        music = game.add.audio('amthanhbien');
+        music.onDecoded.add(start, this);
     }
-
+    // hàm khởi tạo file âm thanh
+    function start() {
+      music.fadeIn(3000);
+    }
     // render - dùng để chạy khi debug
     function render () {
 
