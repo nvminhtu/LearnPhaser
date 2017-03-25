@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+
+      function preload() {
+         //load file spritesheet vao
+         game.load.atlas('seacreatures', 'seacreatures_json.png', 'seacreatures_json.json');
+         game.input.onDown.add(changeFrame, this);
+      }
+
+      // khởi tạo con vật
+      var greenJellyfish;
+      function create() {
+        greenJellyfish = game.add.sprite(330, 100, 'seacreatures', 'blueJellyfish0000');
+      }
+
+      function changeFrame() {
+        greenJellyfish.frameName = 'blueJellyfish0010'
+      }
+    </script>
+
+    </body>
+</html>
