@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+
+    <body>
+    <style>
+      body { margin: 0; padding:0;}
+    </style>
+    <script type="text/javascript">
+      // #ví dụ này rất tốt để tạo ra các game dạng dạy học cho trẻ em
+      // Theo kiểu phản ứng dây chuyền.
+
+      // ví dụ: game hướng dẫn trẻ em click vào gì đó -> hành động xảy ra.
+      // ví dụ: game click vào 1 trái banh, nó sẽ chạy và làm đổ gì đó theo qui tắc vật lý
+      // ví dụ: game click vào vật A -> kéo theo vật B đổ -> đè lên vật C
+      // ví dụ: game lắp ống nước trong nhà.
+
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render: render });
+
+      function preload() {
+        game.load.image('fish','fish.png');
+        game.load.image('low-fish','low-fish.png');
+      }
+
+      var text, tweenA, tweenB;
+
+      function create() {
+          //thiết lập màn chơi vói background tùy chọn
+          game.stage.backgroundColor = '#124184';
+
+          // hiện thông báo để user hiểu là sẽ click
+          text = game.add.text(680, 16, "Click to Start", { font: "16px Arial", fill: "#ffffff" });
+
+          // Tiếp tục ta khai báo 2 sprite cần chạy
+          var spriteA = game.add.sprite(560,100,'fish');
+              spriteB = game.add.sprite(560,300,'low-fish');
+
+        tweenA = game.add.tween(spriteA).to( { x: 40 }, 1000, "Quart.easeOut");
+        tweenB = game.add.tween(spriteB).to( { x: 40 }, 6000, "Quart.easeOut");
+
+        // tween A chạy trước -> tween B
+        tweenA.chain(tweenB);
+
+        // sự kiện khi click lên màn hình (touch on start)
+        game.input.onDown.addOnce(start,this);
+      }
+
+      function start() {
+        tweenA.start();
+        text.visible = false;
+      }
+
+      function update() {
+
+      }
+
+      function render() {
+
+      }
+
+    </script>
+
+    </body>
+</html>
