@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+
+    <body>
+    <style>
+      body { margin: 0; padding:0;}
+    </style>
+    <script type="text/javascript">
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, render: render });
+
+      function preload() {
+        game.load.image('hinhnen','battlefield.jpg');
+      }
+
+      function create() {
+        game.stage.backgroundColor = '#182d3b';
+        var hinhnen = game.add.sprite(0,0,'hinhnen');
+        hinhnen.alpha = 0.4;
+
+        var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
+        var text = game.add.text(game.world.centerX, game.world.centerY, "- phaser -\nwith a sprinkle of\npixi dust", style);
+        text.anchor.set(0.5);
+        text.alpha = 0.1;
+
+        game.add.tween(text).to({alpha:1},2000,"Linear",true);
+      }
+
+      // xem thêm hàm tại đây
+      //http://phaser.io/docs/2.4.2/Phaser.Tween.html
+      function render() {
+
+      }
+
+    </script>
+
+    </body>
+</html>

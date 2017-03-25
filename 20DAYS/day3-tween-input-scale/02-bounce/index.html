@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+
+    <body>
+    <style>
+      body { margin: 0; padding:0;}
+    </style>
+    <script type="text/javascript">
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, render: render });
+
+      function preload() {
+        game.load.image('pokeball','pokeball.png');
+      }
+
+      var ball;
+      function create() {
+        ball = game.add.sprite(300,0, 'pokeball');
+        startBounceTween();
+      }
+
+      function startBounceTween() {
+        ball.y = 0;
+
+        // đặt tên cho sự kiện
+        var bounce = game.add.tween(ball);
+        bounce.to({ y: game.world.height-ball.height }, 1000 + Math.random() * 3000, Phaser.Easing.Bounce.In);
+        bounce.onComplete.add(startBounceTween,this);
+        bounce.start();
+      }
+      // xem thêm hàm tại đây
+      //http://phaser.io/docs/2.4.2/Phaser.Tween.html
+      function render() {
+
+      }
+
+    </script>
+
+    </body>
+</html>
