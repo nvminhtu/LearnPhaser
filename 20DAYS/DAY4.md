@@ -13,8 +13,7 @@ Hiểu thêm về các Javascript Pattern khác tại: [Javascript Pattern]
 
 * Hiển thị 1 đoạn text xuất hiện ra screen (từ mờ đến rõ dần).
 
-### INPUT
-### SCALE
+
 
 **Free Software, Hell Yeah!**
 
