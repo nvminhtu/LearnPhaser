@@ -1,0 +1,23 @@
+{
+    "main": [
+        {
+            "type": "image",
+            "key": "tiles",
+            "url": "assets/images/nestle2.png"
+        },
+        {
+            "type": "spritesheet",
+            "key": "frog",
+            "url": "assets/sprites/frog.png",
+            "frameWidth": 79,
+            "frameHeight": 60
+        },
+        {
+            "type": "tilemap",
+            "key": "stage1",
+            "url": "assets/stage1.json",
+            "data": null,
+            "format": "TILED_JSON"
+        }
+    ]
+}

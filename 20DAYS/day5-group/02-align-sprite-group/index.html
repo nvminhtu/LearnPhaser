@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+
+    <body>
+    <style>
+      body { margin: 0; padding:0;}
+    </style>
+    <script type="text/javascript">
+      // #add sprite to group in Phaser
+
+      // init game objects
+      var player, enemies;
+
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render: render });
+
+      function preload() {
+        //game.load.image('diamond','diamond-icon.png');
+        //game.load.image('diamond','diamonds32x5.png');
+        game.load.spritesheet('diamonds', 'diamonds32x24x5.png', 32, 24);
+      }
+
+
+      function create() {
+        var group = game.add.group();
+
+          // Tạo ra 24 sprite (diamonds) cho 1 frame
+          // [0,1,2,3,4] chính là các frame (hàng) ta tạo ra
+          group.createMultiple(24, 'diamonds', [0, 1, 2, 3, 4], true);
+
+          // hàm này quan trọng nhất.
+          // canh lề - khoảng cách cho từng frame
+          // giúp tạo được nhiều sprite
+          group.align(12, -1, 48, 48); //(rows,cols,width, height)
+          // 12: số sprite trên 1 hàng.
+
+          group.x = 100;
+          group.y = 64;
+      }
+
+      function start() {
+
+      }
+
+      function update() {
+
+      }
+
+      function render() {
+
+      }
+
+    </script>
+
+    </body>
+</html>

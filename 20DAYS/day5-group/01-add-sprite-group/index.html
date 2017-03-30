@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+
+    <body>
+    <style>
+      body { margin: 0; padding:0;}
+    </style>
+    <script type="text/javascript">
+      // #add sprite to group in Phaser
+
+      // init game objects
+      var player, enemies;
+
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render: render });
+
+      function preload() {
+        game.load.image('fish','fish.png');
+        game.load.image('low-fish','low-fish.png');
+      }
+
+
+      function create() {
+        //create 2 groups
+        player = game.add.group();
+        enemies = game.add.group();
+
+        // load sprite to a group
+        for(var i = 0; i < 12; i++) {
+          var x = 360 + (Math.random()*200);
+          var y = 120 + (Math.random()*200);
+          enemies.create(x, y, 'low-fish');
+        }
+
+        var player = game.add.sprite(200,240,'fish');
+        enemies.add(player);
+      }
+
+      function start() {
+
+      }
+
+      function update() {
+
+      }
+
+      function render() {
+
+      }
+
+    </script>
+
+    </body>
+</html>

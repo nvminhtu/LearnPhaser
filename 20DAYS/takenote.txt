@@ -1,1 +1,5 @@
 http://thoughts.amphibian.com/2015/11/building-basic-platformer-with-phaser.html
+Load in Phaser
+http://examples.phaser.io/_site/view_full.html?d=loader&f=load+events.js&t=load%20events
+Mission Maker
+http://www.duncanpriebe.com/zyrian-blog/episodes/episode-11-the-mission-maker/
