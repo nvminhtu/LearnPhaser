@@ -7,7 +7,6 @@ class Preload extends Phaser.State {
     this.loadingText = this.game.add.text(32, 32, 'Loading...', {fill: '#fff'});
 
     // Load your assets here
-
     this.game.load.start();
   }
 
