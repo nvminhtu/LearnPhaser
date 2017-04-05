@@ -1,0 +1,41 @@
+{
+  "name": "phaser-es6-boilerplate",
+  "version": "0.1.2",
+  "description": "A stylish boilerplate for using Phaser with ES6",
+  "author": "Brendan Goodenough <brendan@goodenough.nz>",
+  "license": "MIT",
+  "main": "src/game.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nerdenough/phaser-es6-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nerdenough/phaser-es6-boilerplate/issues"
+  },
+  "homepage": "https://github.com/nerdenough/phaser-es6-boilerplate#readme",
+  "scripts": {
+    "start": "gulp serve"
+  },
+  "dependencies": {
+    "phaser": "^2.6.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.14.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.14.3",
+    "browserify": "^13.1.0",
+    "del": "^2.2.2",
+    "eslint": "^3.4.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-if": "^2.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.9",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "yargs": "^5.0.0"
+  }
+}
