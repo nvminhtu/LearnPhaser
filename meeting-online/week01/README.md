@@ -9,7 +9,8 @@ a. Normal Package (Prototype, Observe, Singleton, Module).
 b. ES6 Package.
 c. Grunt Package.
 d. Typescript Package.
-[Phaser Template Slide](https://nvminhtu.github.io/LearnPhaser/meeting-online/week01/phaser-template/slide/#/)
+
+Slide: [Phaser Template Slide](https://nvminhtu.github.io/LearnPhaser/meeting-online/week01/phaser-template/slide/#/)
 
 2. Cách sử dụng các Boot, Loader, các package sao cho hiệu quả? - [Tú]
 
