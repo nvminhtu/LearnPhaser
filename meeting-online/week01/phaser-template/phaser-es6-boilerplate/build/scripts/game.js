@@ -21,6 +21,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// Tìm hiểu về import trong ES6
+// Import statement => được sử dụng để import functions, objects - mà được exprot ở 1 module khác hoặc 1 file script khác
+// http://exploringjs.com/es6/ch_modules.html#sec_importing-exporting-details 
+
+// Khai báo Class
 var Game = function (_Phaser$Game) {
   _inherits(Game, _Phaser$Game);
 
@@ -76,6 +81,11 @@ var Boot = function (_Phaser$State) {
 
   return Boot;
 }(Phaser.State);
+
+// export statement được sử dụng để export functions, objects từ 1 module
+// ví dụ ở dưới là mặc định của export
+// tham khảo thêm ở: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+
 
 exports.default = Boot;
 
