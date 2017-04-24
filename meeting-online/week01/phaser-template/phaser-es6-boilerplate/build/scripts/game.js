@@ -23,7 +23,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // Tìm hiểu về import trong ES6
 // Import statement => được sử dụng để import functions, objects - mà được exprot ở 1 module khác hoặc 1 file script khác
-// http://exploringjs.com/es6/ch_modules.html#sec_importing-exporting-details 
+// http://exploringjs.com/es6/ch_modules.html#sec_importing-exporting-details
 
 // Khai báo Class
 var Game = function (_Phaser$Game) {
@@ -90,7 +90,7 @@ var Boot = function (_Phaser$State) {
 exports.default = Boot;
 
 },{}],3:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -114,12 +114,33 @@ var Play = function (_Phaser$State) {
   }
 
   _createClass(Play, [{
-    key: "create",
+    key: 'create',
     value: function create() {
       // TODO
+      this.game.physics.startSystem(Phaser.Physics.ARCADE);
+      this.game.stage.backgroundColor = '#0072bc';
+      this.sprite = this.game.add.sprite(200, 150, 'pinwheel');
+      var sprites = this.game.add.physicsGroup(Phaser.Physics.ARCADE);
+
+      var delay = 0;
+
+      for (var i = 0; i < 40; i++) {
+        var sprite = this.game.add.sprite(-100 + this.game.world.randomX, 600, 'ball');
+
+        sprite.scale.set(this.game.rnd.realInRange(0.1, 0.6));
+
+        var speed = this.game.rnd.between(4000, 6000);
+
+        this.game.add.tween(sprite).to({ y: -256 }, speed, Phaser.Easing.Sinusoidal.InOut, true, delay, 1000, false);
+
+        delay += 200;
+      }
+      sprites.setAll('body.collideWorldBounds', true);
+      sprites.setAll('body.bounce.x', 1);
+      sprites.setAll('body.bounce.y', 1);
     }
   }, {
-    key: "update",
+    key: 'update',
     value: function update() {
       // TODO
     }
@@ -164,6 +185,9 @@ var Preload = function (_Phaser$State) {
       this.loadingText = this.game.add.text(32, 32, 'Loading...', { fill: '#fff' });
 
       // Load your assets here
+      //this.loadingImage = this.game.load.image('pinwheel','/assets/pinwheel.png');
+      this.game.load.image('pinwheel', '/assets/pinwheel.png');
+
       this.game.load.start();
     }
   }, {
