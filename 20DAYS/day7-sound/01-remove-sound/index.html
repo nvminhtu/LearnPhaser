@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+
+    <body>
+    <style>
+      body { margin: 0; padding:0;}
+    </style>
+    <script type="text/javascript">
+      // #add sprite to group in Phaser
+
+      // init game objects
+      var player, enemies;
+
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render: render });
+
+      function preload() {
+        game.state.backgroundColor = '#007236';
+
+        game.load.image('fish', 'assets/fish.png');
+        game.load.audio('buddy', 'assets/buddy.mp3');
+      }
+
+      var cursors;
+      var d;
+
+      function create() {
+          game.world.resize(3000, 600);
+          // thêm một dãy các hình ảnh ngẫu nhiên vào bên trong game
+          for (var i = 0; i < 100; i++) {
+            game.add.sprite(game.world.randomX, game.world.randomY, 'fish');
+          }
+      }
+
+      function start() {
+
+      }
+
+      function update() {
+
+      }
+
+      function render() {
+
+      }
+
+    </script>
+
+    </body>
+</html>
