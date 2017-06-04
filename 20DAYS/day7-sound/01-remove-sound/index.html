@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+
+    <body>
+    <style>
+      body { margin: 0; padding:0;}
+    </style>
+    <script type="text/javascript">
+      // #add sprite to group in Phaser
+
+      // init game objects
+      var player, enemies;
+
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render: render });
+
+      function preload() {
+        game.state.backgroundColor = '#007236';
+
+        game.load.image('fish', 'assets/fish.png');
+        game.load.image('lowfish', 'assets/low-fish.png');
+        game.load.audio('buddy', 'assets/buddy.mp3');
+      }
+
+      var cursors;
+      var d;
+
+      function create() {
+          game.world.resize(3000, 600);
+          // thêm một dãy các hình ảnh ngẫu nhiên vào bên trong game
+          for (var i = 0; i < 100; i++) {
+            game.add.sprite(game.world.randomX, game.world.randomY, 'fish');
+          }
+
+          // text for debugging
+          game.add.text(600, 800, "- phaser -", { font: "32px Arial", fill: "#330088", align: "center" });
+
+          // khởi tạo 1 group để thêm button vào
+          var g = game.add.group();
+          g.x = 300;
+
+          // thêm vào vị trí cho nút bấm - bấm vào con cá thì remove sound đi
+          d = g.create(100, 300, 'lowfish');
+          d.anchor.setTo(0.5, 0.5);
+
+          cursors = game.input.keyboard.createCursorKeys();
+      }
+
+      function start() {
+
+      }
+
+      function update() {
+
+          d.angle += 1;
+
+          if (cursors.up.isDown)
+          {
+              if (cursors.up.shiftKey)
+              {
+                  d.angle++;
+              }
+              else
+              {
+                  game.camera.y -= 4;
+              }
+          }
+          else if (cursors.down.isDown)
+          {
+              if (cursors.down.shiftKey)
+              {
+                  d.angle--;
+              }
+              else
+              {
+                  game.camera.y += 4;
+              }
+          }
+
+          if (cursors.left.isDown)
+          {
+              if (cursors.left.shiftKey)
+              {
+                  game.world.rotation -= 0.05;
+              }
+              else
+              {
+                  game.camera.x -= 4;
+              }
+          }
+          else if (cursors.right.isDown)
+          {
+              if (cursors.right.shiftKey)
+              {
+                  game.world.rotation += 0.05;
+              }
+              else
+              {
+                  game.camera.x += 4;
+              }
+          }
+
+      }
+
+      function render() {
+
+      }
+
+    </script>
+
+    </body>
+</html>
